@@ -1,10 +1,16 @@
 import React from "react";
+import davidPhoto from './assets/david-photo.jpeg'
 import { Mail, MapPin, Phone, Download, ExternalLink, Wrench, ShieldCheck, GraduationCap, Cpu, Building2, Award } from "lucide-react";
+
+const RESUME_URL = "/resume.pdf";
+const CV_URL = "/curriculum-vitae.pdf";
+const LINKEDIN_URL = "https://www.linkedin.com/in/david-ceballos-faour/";
 
 const experience = [
   {
     role: "Maintenance Supervisor",
     company: "GG Sistemas del Norte S.A. de C.V.",
+    companyUrl: "https://www.ggsistemas.com.mx/",
     dates: "Nov 2025 – Present",
     bullets: [
       "Coordinate daily preventive maintenance activities and work orders for critical and non-critical equipment at the Mexico Technical Center.",
@@ -17,6 +23,7 @@ const experience = [
   {
     role: "HVAC Coordinator & Maintenance Co-Leader",
     company: "GG Sistemas del Norte S.A. de C.V.",
+    companyUrl: "https://www.ggsistemas.com.mx/",
     dates: "Apr 2023 – Nov 2025",
     bullets: [
       "Monitored and controlled office temperature at the Mexico Technical Center using Tracer software for Fan Coil units.",
@@ -29,6 +36,7 @@ const experience = [
   {
     role: "Maintenance Routines and HSE Coordinator",
     company: "GG Sistemas del Norte S.A. de C.V.",
+    companyUrl: "https://www.ggsistemas.com.mx/",
     dates: "Apr 2022 – Apr 2023",
     bullets: [
       "Monitored the Mexico Technical Center building in compliance with applicable STPS standards.",
@@ -41,6 +49,7 @@ const experience = [
   {
     role: "Maintenance Intern",
     company: "Autokabel de México S.A. de C.V.",
+    companyUrl: "https://www.onemobility-group.com/",
     dates: "Feb 2021 – Aug 2021",
     bullets: [
       "Supported the documentation of Reliability-Centered Maintenance procedures for a production line, improving maintenance tracking and standardization.",
@@ -140,19 +149,58 @@ export default function DavidPortfolio() {
               Mechatronics Engineer with experience in industrial maintenance, HVAC systems, preventive and corrective maintenance, HSE compliance, work order coordination, and technical team supervision.
             </p>
             <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-              <a href="#experience" className="inline-flex items-center justify-center rounded-full bg-blue-600 px-6 py-3 font-semibold text-white shadow-lg shadow-blue-900/30 hover:bg-blue-500">
-                View Experience <ExternalLink className="ml-2 h-4 w-4" />
-              </a>
-              <a href="/resume.pdf" className="inline-flex items-center justify-center rounded-full border border-white/25 px-6 py-3 font-semibold text-white hover:bg-white/10">
-                Download Resume <Download className="ml-2 h-4 w-4" />
-              </a>
+              <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+                <a
+                  href="#experience"
+                  className="inline-flex items-center justify-center rounded-full bg-blue-600 px-6 py-3 font-semibold text-white shadow-lg shadow-blue-900/30 hover:bg-blue-500"
+                >
+                  View Experience <ExternalLink className="ml-2 h-4 w-4" />
+                </a>
+
+                <a
+                  href={RESUME_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full border border-white/25 px-6 py-3 font-semibold text-white hover:bg-white/10"
+                >
+                  Resume <Download className="ml-2 h-4 w-4" />
+                </a>
+
+                <a
+                  href={CV_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full border border-white/25 px-6 py-3 font-semibold text-white hover:bg-white/10"
+                >
+                  Curriculum Vitae <Download className="ml-2 h-4 w-4" />
+                </a>
+
+                <a
+                  href={LINKEDIN_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full border border-white/25 px-6 py-3 font-semibold text-white hover:bg-white/10"
+                >
+                  LinkedIn <ExternalLink className="ml-2 h-4 w-4" />
+                </a>
+              </div>
             </div>
           </div>
 
           <div className="rounded-[2rem] border border-white/10 bg-white/10 p-6 shadow-2xl backdrop-blur-md">
             <div className="rounded-[1.5rem] bg-white p-6 text-slate-950">
-              <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-slate-950 text-2xl font-black text-white">DA</div>
+              <div className="mb-6">
+                <div className="mb-8 flex justify-center">
+                  <img
+                    src={davidPhoto}
+                    alt="David Arath Ceballos Faour"
+                    className="h-60 w-60 rounded-3xl object-cover border-4 border-slate-100 shadow-xl"
+                  />
+                </div>
+              </div>
+
               <h3 className="text-2xl font-bold">Professional Focus</h3>
+
               <div className="mt-6 grid gap-4">
                 {[
                   ["Team Leadership", "30 employees supervised"],
@@ -188,7 +236,15 @@ export default function DavidPortfolio() {
                 <div className="flex flex-col justify-between gap-3 md:flex-row md:items-start">
                   <div>
                     <h3 className="text-2xl font-bold text-slate-950">{job.role}</h3>
-                    <p className="mt-1 font-semibold text-blue-700">{job.company}</p>
+                    <a
+                      href={job.companyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-1 inline-flex items-center gap-2 font-semibold text-blue-700 hover:text-blue-900"
+                    >
+                      {job.company}
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
                   </div>
                   <p className="rounded-full bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-700">{job.dates}</p>
                 </div>
@@ -273,14 +329,24 @@ export default function DavidPortfolio() {
             <Award className="h-6 w-6 text-blue-700" />
             <h3 className="text-xl font-bold">Certification</h3>
           </div>
-          <p className="text-slate-700"><strong>Green Belt Certification</strong> — SigmaPro Inc. (2025)</p>
+          <div className="space-y-3 text-slate-700">
+            <p>
+              <strong>Green Belt Certification</strong> — SigmaPro Inc. (2025)
+            </p>
+            <p>
+              <strong>Quantitative Analysis</strong> — Tecmilenio (2025)
+            </p>
+            <p>
+              <strong>Strategic Management</strong> — Tecmilenio (2025)
+            </p>
+          </div>
         </div>
       </section>
 
       <section id="contact" className="bg-slate-950 text-white">
         <div className="mx-auto max-w-7xl px-6 py-20">
           <SectionHeader eyebrow="Contact" title="Let’s connect" description="Available for professional opportunities in maintenance supervision, facilities operations, HVAC, HSE, engineering, and technical education." />
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-4">
             <a href="mailto:cefd22@gmail.com" className="rounded-2xl border border-white/10 bg-white/10 p-5 hover:bg-white/15">
               <Mail className="mb-4 h-6 w-6 text-blue-300" />
               <p className="font-semibold">Email</p>
@@ -296,6 +362,16 @@ export default function DavidPortfolio() {
               <p className="font-semibold">Location</p>
               <p className="mt-1 text-slate-300">Ciudad Juárez, Chihuahua, Mexico</p>
             </div>
+            <a
+              href={LINKEDIN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-2xl border border-white/10 bg-white/10 p-5 hover:bg-white/15"
+            >
+              <ExternalLink className="mb-4 h-6 w-6 text-blue-300" />
+              <p className="font-semibold">LinkedIn</p>
+              <p className="mt-1 text-slate-300">View professional profile</p>
+            </a>
           </div>
         </div>
       </section>
